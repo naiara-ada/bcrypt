@@ -16,7 +16,6 @@ app.use(session({
 
 app.use('/', routes);
 
-
 app.listen(3000, ()=>{
     console.log('Express on http://localhost:3000');
 })

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const {secret, hashedSecret} = require('../crypto/config');
+const {hashedSecret} = require('../crypto/config');
 
 
 function generateToken(user){
@@ -10,8 +10,7 @@ function verifyToken(req, res, next){
     const token = req.session.token;
     if (!token){
         return res.status(401).json({mensaje: 'token no generado'})
-    }
-
+    }    
     jwt.verify(token, hashedSecret, (err, decoded)=>{
         if(err){
             return res.status(401).json({mensaje: 'token invalido'})

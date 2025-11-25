@@ -26,9 +26,7 @@ routes.get('/', (req, res)=>{
                 <button type="submit">Logout</button>
             </form>
             `;
-    }
-
-    
+    }   
     res.send(template);
 })
 
@@ -42,7 +40,6 @@ routes.post('/login', (req, res)=>{
     } else{
         res.status(401).json({mensaje: 'Credenciales incorrectas'});
     }
-
 })
 
 routes.get('/dashboard', verifyToken, (req, res)=>{
@@ -58,14 +55,14 @@ routes.get('/dashboard', verifyToken, (req, res)=>{
                 <button type="submit">Cerrar Sesión</button>
             </form>        
         `)
+    }else{
+        res.status(401).json({mensaje: 'usuario no encontrado'});
     }
-
 })
 
 routes.post('/logout', (req, res)=>{
     req.session.destroy();
     res.redirect('/');
 })
-
 
 module.exports = routes;
